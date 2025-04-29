@@ -3,6 +3,10 @@
 This project provides a simple, interactive visualization of the Paxos and Raft consensus algorithms, allowing users to
 step through basic scenarios and observe the message flows and state changes involved.
 
+Go to for webpage:
+[https://isikhi.github.io/basic-consensus-paxos-raft/
+](https://isikhi.github.io/basic-consensus-paxos-raft/)
+
 ## Purpose
 
 The primary goal is to offer a conceptual understanding of how Paxos and Raft work by visualizing their core mechanics
