@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title data-lang-key="pageTitle"></title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 font-sans">
+<div class="container mx-auto px-4 py-8 relative">
+    <div class="absolute top-4 right-4 flex items-center space-x-4 text-sm" id="lang-selector">
+        <div class="flex items-center space-x-1">
+            <svg aria-hidden="true" class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor"
+                 stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+            </svg>
+            <label class="font-medium text-gray-700 sr-only" data-lang-key="languageLabel"
+                   for="language-select">Dil:</label>
+            <select class="border rounded p-1 bg-white" id="language-select" title="Select Language">
+                <option value="tr">TR</option>
+                <option value="en">EN</option>
+            </select>
+        </div>
+        <a class="text-gray-600 hover:text-gray-900 flex items-center" href="https://github.com/myuser/asd" rel="noopener noreferrer"
+           target="_blank" title="GitHub Repository">
+            <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd"
+                      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.201 2.397.098 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                      fill-rule="evenodd"/>
+            </svg>
+            <span class="sr-only">GitHub Repository</span>
+        </a>
+    </div>
+
+    <h1 class="text-3xl font-bold text-center mb-8 mt-8 md:mt-0" data-lang-key="mainTitle" id="main-title"></h1>
+
+    <div class="flex mb-8 border-b" id="tab-nav">
+        <button class="px-4 py-2 mr-4 text-gray-600 hover:text-gray-900 tab-btn tab-active" data-lang-key="tabOverview"
+                data-tab="overview"></button>
+        <button class="px-4 py-2 mr-4 text-gray-600 hover:text-gray-900 tab-btn" data-lang-key="tabVisualization"
+                data-tab="visualization"></button>
+    </div>
+
+    <div class="tab-content active" id="tab-overview">
+        <h2 class="text-2xl font-bold mb-4" data-lang-key="overviewTitle"></h2>
+        <p class="mb-4 text-gray-700" data-lang-key="overviewIntro"></p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <h3 class="text-xl font-bold mb-2 text-blue-700">Paxos</h3>
+                <p class="mb-2 text-sm text-gray-600" data-lang-key="paxosDesc"></p>
+                <ul class="list-disc pl-5 mb-4 text-sm space-y-1">
+                    <li data-lang-key="paxosRoles"></li>
+                    <li data-lang-key="paxosProtocol"></li>
+                    <li data-lang-key="paxosLeadership"></li>
+                    <li data-lang-key="paxosComplexity"></li>
+                </ul>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                <h3 class="text-xl font-bold mb-2 text-green-700">Raft</h3>
+                <p class="mb-2 text-sm text-gray-600" data-lang-key="raftDesc"></p>
+                <ul class="list-disc pl-5 mb-4 text-sm space-y-1">
+                    <li data-lang-key="raftRoles"></li>
+                    <li data-lang-key="raftProtocol"></li>
+                    <li data-lang-key="raftLeadership"></li>
+                    <li data-lang-key="raftUnderstandability"></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-10">
+            <h2 class="text-2xl font-bold mb-4" data-lang-key="comparisonTitle"></h2>
+            <p class="mb-4 text-gray-700" data-lang-key="comparisonIntro"></p>
+            <div class="overflow-x-auto mb-6">
+                <table class="w-full border-collapse feature-table bg-white shadow rounded">
+                    <thead>
+                    <tr>
+                        <th class="border p-3 bg-gray-600 text-white text-left" data-lang-key="compAspect"></th>
+                        <th class="border p-3 bg-gray-600 text-white text-left">Paxos</th>
+                        <th class="border p-3 bg-gray-600 text-white text-left">Raft</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                    <tr class="hover:bg-gray-50">
+                        <td class="border p-3 font-medium" data-lang-key="compLeadership"></td>
+                        <td class="border p-3" data-lang-key="compPaxosLeadershipVal"></td>
+                        <td class="border p-3" data-lang-key="compRaftLeadershipVal"></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="border p-3 font-medium" data-lang-key="compPhases"></td>
+                        <td class="border p-3" data-lang-key="compPaxosPhasesVal"></td>
+                        <td class="border p-3" data-lang-key="compRaftPhasesVal"></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="border p-3 font-medium" data-lang-key="compComplexity"></td>
+                        <td class="border p-3" data-lang-key="compPaxosComplexityVal"></td>
+                        <td class="border p-3" data-lang-key="compRaftComplexityVal"></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="border p-3 font-medium" data-lang-key="compFaultTolerance"></td>
+                        <td class="border p-3" data-lang-key="compPaxosFaultToleranceVal"></td>
+                        <td class="border p-3" data-lang-key="compRaftFaultToleranceVal"></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="border p-3 font-medium" data-lang-key="tableMessageComplexity"></td>
+                        <td class="border p-3" data-lang-key="paxosMessageComplexityVal"></td>
+                        <td class="border p-3" data-lang-key="raftMessageComplexityVal"></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="border p-3 font-medium" data-lang-key="compPerformance"></td>
+                        <td class="border p-3" data-lang-key="compPaxosPerformanceVal"></td>
+                        <td class="border p-3" data-lang-key="compRaftPerformanceVal"></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="border p-3 font-medium" data-lang-key="compFlexibility"></td>
+                        <td class="border p-3" data-lang-key="compPaxosFlexibilityVal"></td>
+                        <td class="border p-3" data-lang-key="compRaftFlexibilityVal"></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="border p-3 font-medium" data-lang-key="compUseCases"></td>
+                        <td class="border p-3" data-lang-key="compPaxosUseCasesVal"></td>
+                        <td class="border p-3" data-lang-key="compRaftUseCasesVal"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg border">
+                <h3 class="text-xl font-bold mb-3 text-center" data-lang-key="advDisadvTitle"></h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-bold text-blue-700 mb-1">Paxos</h4>
+                        <p class="text-sm font-medium text-green-600" data-lang-key="advantages"></p>
+                        <ul class="list-disc pl-5 text-sm mb-3 space-y-1">
+                            <li data-lang-key="paxosAdv1"></li>
+                            <li data-lang-key="paxosAdv2"></li>
+                            <li data-lang-key="paxosAdv3"></li>
+                        </ul>
+                        <p class="text-sm font-medium text-red-600" data-lang-key="disadvantages"></p>
+                        <ul class="list-disc pl-5 text-sm space-y-1">
+                            <li data-lang-key="paxosDisadv1"></li>
+                            <li data-lang-key="paxosDisadv2"></li>
+                            <li data-lang-key="paxosDisadv3"></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-green-700 mb-1">Raft</h4>
+                        <p class="text-sm font-medium text-green-600" data-lang-key="advantages"></p>
+                        <ul class="list-disc pl-5 text-sm mb-3 space-y-1">
+                            <li data-lang-key="raftAdv1"></li>
+                            <li data-lang-key="raftAdv2"></li>
+                            <li data-lang-key="raftAdv3"></li>
+                            <li data-lang-key="raftAdv4"></li>
+                        </ul>
+                        <p class="text-sm font-medium text-red-600" data-lang-key="disadvantages"></p>
+                        <ul class="list-disc pl-5 text-sm space-y-1">
+                            <li data-lang-key="raftDisadv1"></li>
+                            <li data-lang-key="raftDisadv2"></li>
+                            <li data-lang-key="raftDisadv3"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center">
+            <button class="bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition text-lg font-medium"
+                    data-lang-key="goToVisualizationBtn"
+                    id="goto-visualization">
+            </button>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab-visualization">
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6 rounded" role="alert">
+            <p class="font-bold" data-lang-key="disclaimerTitle"></p>
+            <p data-lang-key="disclaimerText"></p>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between items-start mb-6 space-y-4 md:space-y-0">
+            <div class="flex-shrink-0">
+                <h2 class="text-2xl font-bold mb-3" data-lang-key="visualizationTitle"></h2>
+                <div class="flex space-x-2 mb-4 flex-wrap">
+                    <button class="px-4 py-2 rounded algo-btn bg-gray-300 text-gray-700 hover:bg-gray-400"
+                            data-algo="comparison"
+                            data-lang-key="algoComp" id="algo-comp"></button>
+                    <button class="px-4 py-2 rounded algo-btn bg-gray-300 text-gray-700 hover:bg-gray-400"
+                            data-algo="paxos"
+                            data-lang-key="algoPaxos" id="algo-paxos"></button>
+                    <button class="px-4 py-2 rounded algo-btn bg-gray-300 text-gray-700 hover:bg-gray-400"
+                            data-algo="raft"
+                            data-lang-key="algoRaft" id="algo-raft"></button>
+                </div>
+            </div>
+            <div class="flex flex-col space-y-3 border p-3 rounded bg-white shadow-sm">
+                <div>
+                    <label class="mr-2 font-medium text-sm" data-lang-key="scenarioLabel" for="scenario-select"></label>
+                    <select class="border rounded p-1 text-sm" id="scenario-select">
+                        <option data-lang-key="scenarioNormal" value="normal"></option>
+                        <option data-lang-key="scenarioNodeFailure" value="nodeFailure"></option>
+                        <option data-lang-key="scenarioLeaderFailure" value="leaderFailure"></option>
+                    </select>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <label class="font-medium text-sm" data-lang-key="stepLabel" for="step-slider"></label>
+                    <input class="w-40 md:w-56" id="step-slider" max="8" min="0" step="1" type="range" value="0">
+                    <span class="font-bold text-lg w-8 text-center" id="step-val">0</span>
+                </div>
+                <div class="flex justify-end space-x-3 pt-2">
+                    <button class="bg-gray-600 text-white px-3 py-1 rounded hover:bg-gray-700 text-sm" data-lang-key="prevBtn"
+                            id="prev-step"
+                            title=""></button>
+                    <button class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 text-sm" data-lang-key="nextBtn"
+                            id="next-step"
+                            title=""></button>
+                    <button class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm" data-lang-key="resetBtn"
+                            id="reset-btn"
+                            title=""></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4" id="visualization-area">
+            <div class="paxos-container">
+                <h3 class="text-lg font-semibold text-center mb-2 text-blue-800">Paxos</h3>
+                <div class="bg-white rounded-lg shadow" id="paxos-graph"></div>
+            </div>
+            <div class="raft-container">
+                <h3 class="text-lg font-semibold text-center mb-2 text-green-800">Raft</h3>
+                <div class="bg-white rounded-lg shadow" id="raft-graph"></div>
+            </div>
+        </div>
+
+        <!-- Visualization Legend -->
+        <div id="visualization-legend">
+            <h4 data-lang-key="legendTitle"></h4>
+            <div class="legend-section">
+                <h5 data-lang-key="legendPaxosTitle"></h5>
+                <ul>
+                    <li><span class="symbol symbol-diamond" style="background-color: #a7d7f9;"></span> <span
+                            data-lang-key="legendProposer"></span></li>
+                    <li><span class="symbol symbol-ellipse" style="background-color: #ffffcc;"></span> <span
+                            data-lang-key="legendAcceptor"></span></li>
+                    <li><span class="symbol symbol-triangle" style="border-bottom-color: #c1e1c1;"></span> <span
+                            data-lang-key="legendLearner"></span></li>
+                </ul>
+            </div>
+            <div class="legend-section">
+                <h5 data-lang-key="legendRaftTitle"></h5>
+                <ul>
+                    <li><span class="symbol symbol-star" style="background-color: #a0d9a1;"></span> <span
+                            data-lang-key="legendLeader"></span></li>
+                    <li><span class="symbol symbol-ellipse border-candidate" style="background-color: #ffdca8;"></span>
+                        <span
+                                data-lang-key="legendCandidate"></span></li>
+                    <li><span class="symbol symbol-ellipse" style="background-color: #e9ecef;"></span> <span
+                            data-lang-key="legendFollower"></span></li>
+                </ul>
+            </div>
+            <div class="legend-section">
+                <h5 data-lang-key="legendStatesTitle"></h5>
+                <ul>
+                    <li><span class="symbol border-preparing"></span> <span data-lang-key="legendPreparing"></span></li>
+                    <li><span class="symbol border-promised"></span> <span data-lang-key="legendPromised"></span></li>
+                    <li><span class="symbol border-accepted"></span> <span data-lang-key="legendAccepted"></span></li>
+                    <li><span class="symbol symbol-failed"></span> <span data-lang-key="legendFailed"></span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-6">
+            <h3 class="text-xl font-bold mb-2" data-lang-key="logTitle"></h3>
+            <div class="h-40 overflow-y-auto shadow-inner text-sm" id="log-panel"></div>
+        </div>
+        <div class="mt-10 p-6 bg-gray-50 border border-gray-200 rounded-lg shadow-sm" id="glossary">
+            <h2 class="text-2xl font-bold mb-4 text-center" data-lang-key="glossaryTitle"></h2>
+            <dl class="space-y-4 text-sm">
+                <div>
+                    <dt class="font-semibold text-gray-800" data-lang-key="glossaryNodeIdTitle"></dt>
+                    <dd class="ml-4 text-gray-600">
+                        <span data-lang-key="glossaryP1Pn"></span><br>
+                        <span data-lang-key="glossaryR1Rn"></span>
+                    </dd>
+                </div>
+                <div>
+                    <dt class="font-semibold text-gray-800" data-lang-key="glossaryTermIdTitle"></dt>
+                    <dd class="ml-4 text-gray-600">
+                        <span data-lang-key="glossaryT0Tn"></span>
+                    </dd>
+                </div>
+                <div>
+                    <dt class="font-semibold text-gray-800" data-lang-key="glossaryPaxosRolesTitle"></dt>
+                    <dd class="ml-4 text-gray-600">
+                        <span data-lang-key="glossaryProposer"></span><br>
+                        <span data-lang-key="glossaryAcceptor"></span><br>
+                        <span data-lang-key="glossaryLearner"></span>
+                    </dd>
+                </div>
+                <div>
+                    <dt class="font-semibold text-gray-800" data-lang-key="glossaryRaftRolesTitle"></dt>
+                    <dd class="ml-4 text-gray-600">
+                        <span data-lang-key="glossaryFollower"></span><br>
+                        <span data-lang-key="glossaryCandidate"></span><br>
+                        <span data-lang-key="glossaryLeader"></span>
+                    </dd>
+                </div>
+                <div>
+                    <dt class="font-semibold text-gray-800" data-lang-key="glossaryPaxosMessagesTitle"></dt>
+                    <dd class="ml-4 text-gray-600">
+                        <span data-lang-key="glossaryPrepare"></span><br>
+                        <span data-lang-key="glossaryPromise"></span><br>
+                        <span data-lang-key="glossaryAccept"></span><br>
+                        <span data-lang-key="glossaryAccepted"></span>
+                    </dd>
+                </div>
+                <div>
+                    <dt class="font-semibold text-gray-800" data-lang-key="glossaryRaftMessagesTitle"></dt>
+                    <dd class="ml-4 text-gray-600">
+                        <span data-lang-key="glossaryRequestVote"></span><br>
+                        <span data-lang-key="glossaryVoteGranted"></span><br>
+                        <span data-lang-key="glossaryAppendEntries"></span><br>
+                        <span data-lang-key="glossaryTerm"></span>
+                    </dd>
+                </div>
+                <div>
+                    <dt class="font-semibold text-gray-800" data-lang-key="glossaryQuorumTitle"></dt>
+                    <dd class="ml-4 text-gray-600" data-lang-key="glossaryQuorumDesc"></dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<script src="js/contents.js"></script>
+<script src="js/translator.js"></script>
+<script src="js/main.js"></script>
+<script src="js/paxos.simulator.js"></script>
+<script src="js/raft.simulator.js"></script>
+</body>
+
+</html>

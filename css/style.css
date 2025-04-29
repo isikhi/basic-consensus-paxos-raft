@@ -1,0 +1,195 @@
+    .tab-active {
+        border-bottom: 3px solid #4CAF50;
+        font-weight: 600;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    #paxos-graph,
+    #raft-graph {
+        border: 1px solid #ddd;
+        min-height: 300px;
+        height: 60vh;
+        background-color: #f9f9f9;
+    }
+
+    #visualization-area {
+        min-height: 320px;
+    }
+
+    #visualization-legend {
+        font-size: 0.8rem;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    #visualization-legend h4 {
+        font-weight: 600;
+        margin-bottom: 5px;
+        grid-column: 1 / -1;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    #visualization-legend .legend-section h5 {
+        font-weight: 600;
+        margin-bottom: 3px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    #visualization-legend ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    #visualization-legend li {
+        margin-bottom: 2px;
+        display: flex;
+        align-items: center;
+    }
+
+    #visualization-legend .symbol {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-right: 6px;
+        border: 1px solid #555;
+        vertical-align: middle;
+    }
+
+    #visualization-legend .symbol-ellipse {
+        border-radius: 50%;
+    }
+
+    #visualization-legend .symbol-diamond {
+        transform: rotate(45deg);
+    }
+
+    #visualization-legend .symbol-triangle {
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 12px solid;
+        border-bottom-color: inherit;
+        background-color: transparent !important;
+        border-top: none;
+        border-left-style: solid;
+        border-right-style: solid;
+        border-bottom-style: solid;
+        border-width: 6px 6px 10px 6px;
+    }
+
+    #visualization-legend .symbol-star {
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        width: 14px;
+        height: 14px;
+    }
+
+    #visualization-legend .symbol-failed {
+        opacity: 0.6;
+        border-style: dashed;
+        border-color: #dc3545;
+        background-color: #f8d7da;
+    }
+
+    #visualization-legend .border-preparing {
+        border-width: 2px;
+        border-color: #007bff;
+    }
+
+    #visualization-legend .border-promised {
+        border-width: 2px;
+        border-color: #ffc107;
+    }
+
+    #visualization-legend .border-accepted {
+        border-width: 2px;
+        border-color: #28a745;
+    }
+
+    #visualization-legend .border-candidate {
+        border-width: 2px;
+        border-color: #fd7e14;
+    }
+
+
+    #log-panel {
+        font-family: monospace;
+        background-color: #2d3748;
+        color: #f7fafc;
+        padding: 10px;
+        border-radius: 5px;
+        height: 150px;
+        margin-top: 1rem;
+        display: flex;
+        gap: 10px;
+    }
+
+    .log-column {
+        flex: 1;
+        height: 100%;
+        overflow-y: auto;
+        padding-right: 5px;
+        border-right: 1px dashed #555;
+    }
+
+    .log-column:last-child {
+        border-right: none;
+    }
+
+    .log-column h5 {
+        font-weight: bold;
+        margin-bottom: 5px;
+        position: sticky;
+        top: 0;
+        background-color: #2d3748;
+        padding-bottom: 3px;
+        border-bottom: 1px solid #4a5568;
+    }
+
+    input[type=range] {
+        height: 8px;
+        cursor: pointer;
+        background: #d3d3d3;
+        border-radius: 8px;
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        appearance: none;
+        -webkit-appearance: none;
+        height: 16px;
+        width: 16px;
+        background: #4CAF50;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    input[type=range]::-moz-range-thumb {
+        height: 16px;
+        width: 16px;
+        background: #4CAF50;
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+    }
+
+    #lang-selector {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
